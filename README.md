@@ -1,4 +1,4 @@
-# 📊 Power Query Sales Data Cleaning & Transformation
+# 📊 Power-Query-Sales-Data-Cleaning-Customer-Product-Analysis
 
 ## 📌 Project Overview
 
