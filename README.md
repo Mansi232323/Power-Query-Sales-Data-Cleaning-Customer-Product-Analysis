@@ -1,790 +1,644 @@
-Power Query Sales Data Cleaning & Customer Product Analysis
+# 📊 Power Query Sales Data Cleaning & Transformation Project
 
-📊 Power Query Sales Data Cleaning & Transformation Project
+## 📌 Project Overview
 
+This project demonstrates a complete **Sales Data Cleaning and Transformation workflow using Microsoft Excel Power Query**.
 
+The dataset contains **10,000+ sales records** with messy and inconsistent data such as:
 
-📌 Project Overview
+* Inconsistent product names
+* Different customer name formats
+* Mixed price formats
+* Different date formats
+* Inconsistent city names
+* Inconsistent payment modes
+* Duplicate customer-product combinations
+* Different data types
 
-This project demonstrates a complete sales data cleaning and transformation workflow using Microsoft Excel Power Query.
+The objective was to transform this raw dataset into a **clean, standardized, and analysis-ready dataset** using Power Query.
 
-The original dataset contains 10,000+ sales records with intentionally messy and inconsistent data. The purpose of the project is to transform this raw dataset into a clean, structured, analysis-ready dataset using Power Query.
+---
 
-The project covers:
+## 🎯 Project Objectives
 
-Data cleaning
+The main objectives of this project were:
 
-Text standardization
+1. Clean the raw sales dataset.
+2. Standardize text values.
+3. Combine First Name and Last Name.
+4. Clean and standardize Product Name.
+5. Clean Price values.
+6. Convert Price into numeric format.
+7. Convert Purchase Date into a proper date.
+8. Standardize date format to Indian format.
+9. Standardize City and Payment Mode.
+10. Group data by Customer and Product.
+11. Calculate total quantity for each Customer-Product combination.
+12. Remove duplicate Customer-Product combinations.
+13. Create a Product List for every customer.
+14. Create a corresponding Quantity List.
+15. Create a final customer-level summary.
 
-Name transformation
+---
 
-Product standardization
+# 📂 1. Raw Dataset
 
-Price cleaning
+The original dataset contains **10,000+ sales transactions**.
 
-Date transformation
+### Main Columns
 
-Data type conversion
+| Column        | Description             |
+| ------------- | ----------------------- |
+| Order ID      | Unique order identifier |
+| Product Name  | Product purchased       |
+| First Name    | Customer first name     |
+| Last Name     | Customer last name      |
+| Quantity      | Quantity purchased      |
+| Price         | Product price           |
+| Purchase Date | Purchase date           |
+| City          | Customer city           |
+| Payment Mode  | Payment method          |
+| Email         | Customer email          |
 
-Duplicate handling
+### Raw Data
 
-Grouping and aggregation
+![Raw Sales Data](Images/10k%2B%20SALES%20DATA.png)
 
-Customer-level product analysis
+The raw dataset intentionally contains inconsistent values so that different Power Query transformations can be performed.
 
-Quantity analysis
+---
 
-Custom columns
+# 📝 2. Power Query Tasks
 
-Power Query M transformations
+The following tasks were performed on the dataset.
 
-🎯 Business Problem
+![Power Query Tasks](Images/TASKS.png)
 
-Raw sales data often contains inconsistencies that make analysis difficult.
+### Tasks Performed
 
-For example, the same product may appear as:
+* Merge First Name and Last Name
+* Create Full Name
+* Standardize Product Name
+* Standardize City
+* Standardize Payment Mode
+* Clean Price
+* Remove currency symbols
+* Remove commas from Price
+* Convert Price to number
+* Convert Purchase Date to date
+* Standardize dates
+* Group Customer + Product
+* Sum Quantity
+* Remove duplicate combinations
+* Group by Customer
+* Create Product List
+* Create Quantity List
+* Create final customer summary
 
+---
+
+# 🧹 3. Before Data Cleaning
+
+The raw dataset contains several inconsistencies.
+
+![Before Cleaning](Images/BEFORE%20CLEANING%20DATA%20IN%20PQ.png)
+
+### Product Name
+
+The same product appears in different formats:
+
+```text
 Laptop
 laptop
 LAPTOP
+```
 
-The same city may appear as:
+These values need to be standardized.
 
+### City
+
+```text
 Delhi
 delhi
 DELHI
+```
 
-Prices may appear as:
+These should become one consistent value.
 
-₹63,915
-Rs 52896
-50223
-€8,067
+### Payment Mode
 
-Dates may appear in different formats:
-
-02-27-2024
-19/09/2025
-2025-03-31
-06/04/2025
-
-Customer names are also stored separately as:
-
-First Name = Rohan
-Last Name  = Singh
-
-This project solves these problems using Power Query transformations instead of manually editing thousands of rows.
-
-📂 1. Dataset
-
-The project uses a sales dataset containing 10,000+ records.
-
-Main columns
-
-Column
-
-Description
-
-Order ID
-
-Unique order identifier
-
-Product Name
-
-Product purchased
-
-First Name
-
-Customer first name
-
-Last Name
-
-Customer last name
-
-Quantity
-
-Quantity purchased
-
-Price
-
-Sales price
-
-Purchase Date
-
-Date of purchase
-
-City
-
-Customer city
-
-Payment Mode
-
-Payment method
-
-Email
-
-Customer email
-
-Raw Dataset
-
-The following screenshot shows the original sales data before Power Query cleaning.
-
-
-
-What can be observed?
-
-The raw dataset contains:
-
-Inconsistent capitalization
-
-Mixed product names
-
-Mixed city formats
-
-Currency symbols
-
-Commas in prices
-
-Different date formats
-
-First and last names in separate columns
-
-Different payment-mode formats
-
-Missing values in some fields
-
-📝 2. Project Tasks
-
-Before performing the transformation, a list of Power Query tasks was created.
-
-The main tasks were:
-
-Combine First Name and Last Name.
-
-Standardize Product Name.
-
-Standardize City.
-
-Standardize Payment Mode.
-
-Clean Price values.
-
-Convert Price to numeric data type.
-
-Convert Purchase Date to a proper date.
-
-Standardize dates to Indian format.
-
-Group customers by product.
-
-Calculate total quantity for each customer-product combination.
-
-Create a customer-level summary.
-
-Combine products into a single cell.
-
-Combine corresponding quantities into a single cell.
-
-Ensure each customer appears only once.
-
-
-
-🧹 3. Before Data Cleaning
-
-Before cleaning, the dataset contains several types of inconsistencies.
-
-
-
-Problems identified
-
-Product Name
-
-Examples:
-
-Laptop
-laptop
-LAPTOP
-
-These are actually the same product but would be treated as different values during analysis.
-
-City
-
-Examples:
-
-Delhi
-delhi
-DELHI
-
-Again, these should be standardized.
-
-Payment Mode
-
-Examples:
-
+```text
 UPI
 upi
+```
 
-These should be converted to one consistent value.
+These also need standardization.
 
-Price
+### Price
 
-Examples:
+Prices appear in different formats:
 
+```text
 ₹63,915
 Rs 52896
 ₹27,989
 50223
 €8,067
+```
 
-These values need to be cleaned before numerical analysis.
+These values cannot be directly used for numerical analysis.
 
-Purchase Date
+### Purchase Date
 
-Examples:
+Dates appear in different formats:
 
+```text
 02-27-2024
 19/09/2025
 2025-03-31
 06/04/2025
+```
 
-The mixed formats require proper date conversion.
+These need to be converted into a proper date type.
 
-🔧 4. Data Cleaning in Power Query
+---
 
-The first major stage was cleaning the raw data using Power Query.
+# 🧼 4. Data Cleaning
 
+Power Query was used to clean the raw dataset.
 
+![After Cleaning](Images/AFTER%20CLEANING%20DATA%20IN%20PQ.png)
 
-Transformations performed
+### Cleaning Operations
 
-4.1 Text Cleaning
+The following transformations were performed:
 
-Text values were standardized to avoid treating different capitalization as separate categories.
+* Trimmed unnecessary spaces
+* Standardized text
+* Replaced inconsistent values
+* Removed unwanted characters
+* Cleaned currency values
+* Converted data types
+* Standardized dates
+* Removed unnecessary columns
+* Renamed columns
+* Created custom columns
 
-Example:
+The main advantage of Power Query is that the entire process is **repeatable and refreshable**.
 
-laptop
-LAPTOP
-Laptop
+---
 
-became:
+# 👤 5. Creating Full Name
 
-Laptop
+Initially, the dataset had two separate columns:
 
-4.2 City Standardization
-
-City names were standardized.
-
-Example:
-
-delhi
-DELHI
-Delhi
-
-became:
-
-Delhi
-
-4.3 Payment Mode Standardization
-
-Payment modes were standardized.
-
-Example:
-
-upi
-UPI
-
-became:
-
-UPI
-
-4.4 Removing Unwanted Characters
-
-Unnecessary characters were removed from fields where required.
-
-This makes the data suitable for calculations and grouping.
-
-👤 5. Creating Full Name
-
-The original dataset contains:
-
+```text
 First Name
 Last Name
-
-For customer-level analysis, these fields were combined into a single column:
-
-Full_Name
+```
 
 For example:
 
-First Name = Rohan
-Last Name  = Singh
+```text
+Rohan | Singh
+```
 
-Result:
+These were merged into:
 
+```text
 Rohan Singh
+```
 
+![Adding New Column](Images/ADDING%20NEW%20COLUMN%20IN%20A%20DATA.png)
 
+### Why Create Full Name?
 
-Why create Full_Name?
+A single `Full_Name` column makes customer-level grouping easier.
 
-A single customer identifier makes grouping and summarization much easier.
+Instead of using:
 
-Instead of grouping separately by:
-
-First Name
-Last Name
+```text
+First Name + Last Name
+```
 
 we can simply use:
 
+```text
 Full_Name
+```
 
-💰 6. Cleaning the Price Column
+---
 
-The Price column contains different currency representations.
+# 💰 6. Price Cleaning
 
-Examples:
+The Price column contained values such as:
 
+```text
 ₹63,915
 Rs 52896
 ₹27,989
 50223
 €8,067
+```
 
-These values cannot reliably be used for calculations until they are converted into a consistent numeric format.
+Currency symbols and separators were removed.
 
-Transformation
+### Example
 
-Unwanted currency symbols and separators were removed.
-
-Examples:
-
+```text
 ₹63,915 → 63915
 Rs 52896 → 52896
 ₹27,989 → 27989
 €8,067 → 8067
+```
 
-The cleaned column was then converted to a numeric data type.
+After cleaning, the Price column was converted into a numeric data type.
 
-Why?
+This allows further calculations such as:
 
-Once Price is numeric, we can perform:
+* Total Sales
+* Average Price
+* Minimum Price
+* Maximum Price
+* Revenue Analysis
 
-SUM
+---
 
-AVERAGE
+# 📅 7. Purchase Date Cleaning
 
-MIN
-
-MAX
-
-Grouped sales analysis
-
-Revenue calculations
-
-📅 7. Cleaning the Purchase Date
-
-The dataset contains mixed date formats.
+The Purchase Date column contained mixed formats.
 
 Examples:
 
+```text
 02-27-2024
 19/09/2025
 2025-03-31
 06/04/2025
+```
 
-Power Query was used to convert these values into proper dates.
+Power Query was used to convert these values into a proper date type.
 
-The final date representation is intended to follow the Indian format:
+The required Indian date format is:
 
+```text
 DD-MM-YYYY
-
-Example:
-
-31-03-2025
-19-09-2025
-06-04-2025
-
-Why is this important?
-
-Correct date types allow us to perform:
-
-Month analysis
-
-Year analysis
-
-Quarterly analysis
-
-Date filtering
-
-Time-series analysis
-
-Sales trends
-
-🧩 8. Adding and Transforming Columns
-
-After the initial cleaning, additional columns were created to make the dataset easier to analyze.
-
-
-
-Examples include:
-
-Full_Name
-
-Clean Price
-
-Clean Date
-
-Other calculated/helper columns
-
-Power Query allows these transformations to be performed consistently across the entire dataset.
-
-🔄 9. Grouping Customer + Product
-
-This is one of the most important steps in the project.
-
-The requirement is:
-
-For every customer, identify each unique product and calculate the total quantity purchased.
-
-Therefore, the data was first grouped by:
-
-Full_Name
-+
-Product Name
-
-Then:
-
-Quantity → Sum
-
-Example
-
-Original data:
-
-Full_Name
-
-Product
-
-Quantity
-
-Rohan Singh
-
-Camera
-
-1
-
-Rohan Singh
-
-Camera
-
-3
-
-Rohan Singh
-
-Mobile
-
-2
-
-Rohan Singh
-
-Mobile
-
-1
-
-Rohan Singh
-
-Laptop
-
-5
-
-After grouping:
-
-Full_Name
-
-Product
-
-Total Quantity
-
-Rohan Singh
-
-Camera
-
-4
-
-Rohan Singh
-
-Mobile
-
-3
-
-Rohan Singh
-
-Laptop
-
-5
-
-
-
-📊 10. Group By + Sum Quantity
-
-The first grouping operation uses:
-
-Group By:
-Full_Name
-Product Name
-
-and:
-
-Operation:
-Sum
-Column:
-Quantity
-
-This prevents duplicate customer-product combinations from appearing multiple times.
-
-
-
-Example from the transformation
-
-Instead of:
-
-Rohan Singh | Camera | 1
-Rohan Singh | Camera | 3
-
-the result becomes:
-
-Rohan Singh | Camera | 4
-
-This preserves the quantity while eliminating duplicate customer-product combinations.
-
-🧱 11. Creating a Customer-Level Summary
-
-After calculating the total quantity for each customer-product combination, the data is grouped again by:
-
-Full_Name
-
-The operation used is:
-
-All Rows
-
-This creates a nested table for each customer.
+```
 
 For example:
 
+```text
+31-03-2025
+19-09-2025
+06-04-2025
+```
+
+This makes the dataset suitable for:
+
+* Year analysis
+* Month analysis
+* Quarter analysis
+* Date filtering
+* Sales trend analysis
+
+---
+
+# 🧩 8. Adding New Columns
+
+Additional columns were created during the cleaning and transformation process.
+
+![After Adding New Columns](Images/AFTER%20ADD%20NEW%20COLUMNS%20RESULTS%20IN%20PQ.png)
+
+These include:
+
+* `Full_Name`
+* Cleaned Price
+* Cleaned Date
+* Custom/helper columns
+
+---
+
+# 🔄 9. Grouping Customer + Product
+
+This is one of the most important steps in the project.
+
+The data was grouped using:
+
+```text
+Full_Name
+Product Name
+```
+
+Then Quantity was aggregated using:
+
+```text
+SUM
+```
+
+### Example
+
+Before grouping:
+
+| Full Name   | Product | Quantity |
+| ----------- | ------- | -------: |
+| Rohan Singh | Camera  |        1 |
+| Rohan Singh | Camera  |        3 |
+| Rohan Singh | Mobile  |        2 |
+| Rohan Singh | Mobile  |        1 |
+
+After grouping:
+
+| Full Name   | Product | Total Quantity |
+| ----------- | ------- | -------------: |
+| Rohan Singh | Camera  |              4 |
+| Rohan Singh | Mobile  |              3 |
+
+This removes duplicate Customer-Product combinations while keeping the correct total quantity.
+
+---
+
+# 📊 10. Group By Result
+
+![After Grouping](Images/AFTER%20GROUPING%20DATA.png)
+
+The Group By operation creates a unique combination of:
+
+```text
+Full_Name + Product Name
+```
+
+and calculates:
+
+```text
+Total Quantity
+```
+
+For example:
+
+```text
+Rohan Singh | Camera | 4
+Rohan Singh | Mobile | 3
+Rohan Singh | Laptop | 5
+```
+
+---
+
+# 🧱 11. Grouping by Customer
+
+After calculating total quantity for each Customer-Product combination, the data was grouped again by:
+
+```text
+Full_Name
+```
+
+The grouped data contains a nested table for each customer.
+
+For example:
+
+```text
 Rohan Singh
     ├── Camera → 4
     ├── Mobile → 3
     └── Laptop → 5
+```
 
-This nested structure is then used to create the final product and quantity lists.
+This structure allows us to create the final customer summary.
 
-📋 12. Creating Product List
+---
 
-A Custom Column is used to combine the products into one cell.
+# 📋 12. Creating Product List
 
-The Power Query expression is:
+A Custom Column was created to combine all products purchased by a customer.
 
+### Power Query M Code
+
+```powerquery
 Text.Combine(
     List.Transform([Data][Product Name], each Text.From(_)),
     ", "
 )
+```
 
-Result
+### Result
 
 Instead of:
 
+```text
 Rohan Singh | Camera
 Rohan Singh | Mobile
 Rohan Singh | Laptop
+```
 
 we get:
 
+```text
 Rohan Singh | Camera, Mobile, Laptop
+```
 
-This makes the customer summary much more compact.
+---
 
-🔢 13. Creating Quantity List
+# 🔢 13. Creating Quantity List
 
-A second Custom Column is created for the corresponding quantities.
+A second Custom Column was created for the corresponding quantities.
 
+### Power Query M Code
+
+```powerquery
 Text.Combine(
     List.Transform([Data][Total Quantity], each Text.From(_)),
     ", "
 )
+```
 
-Result
+### Result
 
-If the products are:
-
+```text
+Product:
 Camera, Mobile, Laptop
 
-the corresponding quantities are:
-
+Quantity:
 4, 3, 5
-
-The position of each quantity corresponds to the product in the same position.
+```
 
 Therefore:
 
+```text
 Camera → 4
 Mobile → 3
 Laptop → 5
+```
 
-🎯 14. Final Customer-Level Output
+The position of each quantity corresponds to the product at the same position.
 
-The final output contains one row per customer.
+---
 
-Final structure
+# 🎯 14. Final Output
 
-Full_Name
+The final requirement was:
 
-Product_List_Names
+> **Customer name should appear only once, with all products and their corresponding quantities.**
 
-Quantity_of_Product
+### Final Structure
 
-Rohan Singh
+| Full Name   | Product List           | Quantity |
+| ----------- | ---------------------- | -------- |
+| Rohan Singh | Camera, Mobile, Laptop | 4, 3, 5  |
+| Neha Patel  | Laptop, Camera, Tablet | 7, 2, 5  |
+| Priya Gupta | Tablet, Computer       | 5, 2     |
 
-Camera, Mobile, Laptop
+### Final Clean Dataset
 
-4, 3, 5
+![Final Clean Data](Images/SALES_CLEAN_DATA%20AFTER%20USING%20PQ.png)
 
-Neha Patel
+---
 
-Laptop, Camera, Tablet
+# 🔍 15. Power Query Applied Steps
 
-7, 2, 5
+The entire transformation process is visible in the **Applied Steps** section.
 
-Priya Gupta
+![Query Performed](Images/QUERY%20PERFORMED.png)
 
-Tablet, Computer
+### Transformation Flow
 
-5, 2
-
-The customer name is no longer repeated.
-
-
-
-🔍 15. Query Steps
-
-The project was performed using a sequence of Power Query transformations.
-
-
-
-The query includes operations such as:
-
+```text
 Source
-↓
+ ↓
 Changed Type
-↓
+ ↓
 Trim Text
-↓
+ ↓
 Removed Columns
-↓
+ ↓
 Replaced Values
-↓
+ ↓
 Merged Columns
-↓
+ ↓
 Reordered Columns
-↓
+ ↓
 Added Custom Columns
-↓
+ ↓
 Changed Data Types
-↓
+ ↓
 Grouped Rows
-↓
-Added Custom Columns
-↓
-Final Clean Dataset
+ ↓
+Product List
+ ↓
+Quantity List
+ ↓
+Final Customer Summary
+```
 
-The Applied Steps panel makes the entire transformation process reproducible.
+This makes the transformation process easy to understand, reproduce, and refresh.
 
-🧠 16. Power Query M Logic
+---
 
-The project also uses Power Query's M language for custom transformations.
+# 🧠 16. Power Query M Functions Used
 
-Product combination
+### Text.Combine
 
-Text.Combine(
-    List.Transform([Data][Product Name], each Text.From(_)),
-    ", "
+Used to combine multiple values into one text string.
+
+```powerquery
+Text.Combine(List, ", ")
+```
+
+### List.Transform
+
+Used to transform each value inside a list.
+
+```powerquery
+List.Transform(
+    [Data][Product Name],
+    each Text.From(_)
 )
+```
 
-Quantity combination
+### Text.From
 
-Text.Combine(
-    List.Transform([Data][Total Quantity], each Text.From(_)),
-    ", "
+Converts a value into text.
+
+```powerquery
+Text.From(_)
+```
+
+### Table.Group
+
+Used to group rows and perform aggregation.
+
+```powerquery
+Table.Group(
+    Source,
+    {"Full_Name", "Product Name"},
+    {
+        {
+            "Total Quantity",
+            each List.Sum([Quantity]),
+            Int64.Type
+        }
+    }
 )
+```
 
-These expressions convert list values into readable comma-separated text.
+---
 
-📈 17. Business Value
+# 📈 17. Business Value
 
-This transformation can help businesses answer questions such as:
+This cleaned dataset can help answer important business questions.
 
-What products does each customer purchase?
+### Customer Analysis
 
-How many units of each product did a customer purchase?
+* What products does each customer purchase?
+* How many units did each customer purchase?
+* Which customers purchased multiple products?
 
-Which customers purchased multiple products?
+### Product Analysis
 
-Which products are frequently purchased together?
+* Which products have the highest quantity?
+* Which products are purchased most frequently?
+* Which products are purchased by the same customers?
 
-How much quantity has each customer purchased?
+### Sales Analysis
 
-How can customer purchase history be summarized?
+The cleaned data can also be used for:
 
-The cleaned dataset can then be used for further analysis in:
+* Revenue analysis
+* Monthly sales analysis
+* City-wise sales
+* Payment mode analysis
+* Product performance
+* Customer segmentation
 
-Excel
+---
 
-Pivot Tables
+# 🛠️ 18. Tools & Technologies
 
-Power Pivot
+### Tools Used
 
-Power BI
+* Microsoft Excel
+* Power Query
+* Power Query M
 
-SQL
+### Skills Demonstrated
 
-Python
+* Data Cleaning
+* Data Transformation
+* Data Standardization
+* Data Aggregation
+* Group By
+* Custom Columns
+* Text Transformation
+* List Transformation
+* Date Transformation
+* Numeric Transformation
+* Data Type Conversion
+* Customer-Level Analysis
 
-🛠️ 18. Tools & Technologies
+---
 
-Tools
+# 📁 19. Repository Structure
 
-Microsoft Excel
-
-Power Query
-
-Power Query M
-
-Skills Demonstrated
-
-Data Cleaning
-
-Data Transformation
-
-Data Standardization
-
-Data Aggregation
-
-Group By
-
-Custom Columns
-
-Text Transformation
-
-Date Transformation
-
-Numeric Transformation
-
-Data Preparation
-
-Customer-Level Analysis
-
-📁 19. Repository Structure
-
-Power-Query-Sales-Data-Analysis/
+```text
+Power-Query-Sales-Data/
 │
 ├── Images/
 │   ├── 10k+ SALES DATA.png
@@ -799,102 +653,102 @@ Power-Query-Sales-Data-Analysis/
 │   └── TASKS.png
 │
 ├── Messy_Sales_Data_10000_PowerQuery.xlsx
+│
 └── README.md
+```
 
-📸 20. Complete Transformation Flow
+---
 
-The complete project can be summarized as:
+# 🔄 20. Complete Transformation Workflow
 
+```text
 10,000+ Raw Sales Records
-             ↓
-       Data Profiling
-             ↓
-       Data Cleaning
-             ↓
-     Text Standardization
-             ↓
-       Name Merging
-             ↓
-       Price Cleaning
-             ↓
-       Date Cleaning
-             ↓
-    Data Type Conversion
-             ↓
- Group by Customer + Product
-             ↓
-       Sum Quantity
-             ↓
-      Group by Customer
-             ↓
-    Product List Creation
-             ↓
-    Quantity List Creation
-             ↓
-      Clean Customer Summary
+          ↓
+      Data Profiling
+          ↓
+     Data Cleaning
+          ↓
+ Text Standardization
+          ↓
+     Merge Names
+          ↓
+    Clean Prices
+          ↓
+    Clean Dates
+          ↓
+   Change Data Types
+          ↓
+Group Customer + Product
+          ↓
+    Sum Quantity
+          ↓
+ Remove Duplicate
+ Customer-Product Rows
+          ↓
+   Group by Customer
+          ↓
+  Create Product List
+          ↓
+  Create Quantity List
+          ↓
+Final Customer Summary
+```
 
-⭐ Key Learning Outcomes
+---
 
-Through this project, I learned how to use Power Query to:
+# ⭐ 21. Key Learning Outcomes
 
-Work with messy real-world-style data.
+Through this project, I gained practical experience in:
 
-Build repeatable data-cleaning workflows.
+* Working with messy sales data
+* Building a repeatable Power Query workflow
+* Cleaning inconsistent text
+* Standardizing categories
+* Cleaning currency values
+* Handling mixed date formats
+* Merging columns
+* Creating custom columns
+* Grouping data
+* Aggregating quantities
+* Working with nested tables
+* Using Power Query M
+* Creating customer-level summaries
+* Preparing data for dashboards
 
-Standardize inconsistent text values.
+---
 
-Convert mixed data types.
+# 🚀 22. Future Improvements
 
-Clean currency values.
+This project can be extended into a complete **Sales Analytics Dashboard**.
 
-Handle mixed date formats.
+Future analysis can include:
 
-Merge columns.
+* 💰 Total Revenue
+* 📦 Total Quantity Sold
+* 🏆 Top Products
+* 👤 Top Customers
+* 📅 Monthly Sales Trend
+* 🌍 City-wise Sales
+* 💳 Payment Mode Analysis
+* 📊 Product-wise Revenue
+* 🔎 Customer Segmentation
+* 📈 Excel Dashboard
+* 📊 Power BI Dashboard
 
-Group and aggregate records.
+---
 
-Calculate total quantities.
+# 👩‍💻 Author
 
-Work with nested tables.
+## Mansi Kushwaha
 
-Use Power Query M functions.
+**Aspiring Data Analyst | Excel | Power Query | SQL | Python | Power BI**
 
-Convert lists into readable text.
+This project demonstrates practical experience in **data cleaning, transformation, aggregation, and analysis using Microsoft Excel Power Query**.
 
-Build customer-level summaries.
+---
 
-🚀 Future Improvements
+## ⭐ Project Highlights
 
-The cleaned dataset can be extended into a complete sales analytics project by adding:
+> **10,000+ Raw Records → Cleaned → Standardized → Grouped → Aggregated → Customer-Level Sales Summary**
 
-Total Revenue
-
-Average Order Value
-
-Top Products
-
-Top Customers
-
-Monthly Sales Trends
-
-City-wise Sales
-
-Payment Mode Analysis
-
-Product-wise Revenue
-
-Customer Segmentation
-
-Excel Dashboard
-
-Power BI Dashboard
-
-👩‍💻 Author
-
-Mansi Kushwaha
-
-Aspiring Data Analyst | Excel | Power Query | SQL | Python | Power BI
-
-This project is part of my practical data analytics portfolio and demonstrates hands-on experience with Excel Power Query and data transformation.
-
-⭐ If you found this project useful
+If you found this project useful, feel free to explore the Excel workbook and transformation screenshots in this repository.
