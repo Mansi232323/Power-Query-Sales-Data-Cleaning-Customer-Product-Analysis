@@ -1,8 +1,3 @@
-Yes 👍 Since **all these images are inside your `Images` folder**, you should add **every image in the README**, with the image placed in the relevant section.
-
-Use this complete structure in your `README.md`:
-
-````markdown
 # 📊 Power Query Sales Data Cleaning & Transformation Project
 
 ## 📌 Project Overview
