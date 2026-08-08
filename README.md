@@ -8,7 +8,7 @@ The dataset contains **10,000+ sales records** with various real-world data-qual
 
 The main objective of this project was to transform the messy raw sales data into a **clean, standardized, structured, and analysis-ready dataset** using Power Query.
 
----
+
 
 ## 🎯 Project Objectives
 
@@ -33,7 +33,7 @@ The major objectives of this project were:
 - Create corresponding Quantity Lists
 - Create a final customer-level summary
 
----
+
 
 # 📂 Dataset
 
@@ -54,9 +54,9 @@ The original dataset contains **10,000+ sales transactions**.
 | Payment Mode | Method of payment |
 | Email | Customer email |
 
----
 
-# 🖼️ 1. Raw Sales Data
+
+# 🖼️ Raw Sales Data
 
 The project starts with a raw sales dataset containing more than 10,000 records.
 
@@ -64,9 +64,9 @@ The project starts with a raw sales dataset containing more than 10,000 records.
 
 The dataset intentionally contains inconsistent values so that different Power Query data-cleaning and transformation techniques can be applied.
 
----
 
-# 📝 2. Power Query Tasks
+
+# 📝 Power Query Tasks
 
 The following tasks were performed using Microsoft Excel Power Query.
 
@@ -92,9 +92,9 @@ The following tasks were performed using Microsoft Excel Power Query.
 16. Create Quantity List
 17. Generate final customer-level summary
 
----
 
-# 🧹 3. Before Data Cleaning
+
+# 🧹 Before Data Cleaning
 
 The original dataset contained several inconsistencies.
 
@@ -156,7 +156,7 @@ These inconsistencies needed to be resolved before analysis.
 
 ---
 
-# 👤 4. Creating Full Name
+# 👤 Creating Full Name
 
 The original dataset contained two separate columns:
 
@@ -187,7 +187,7 @@ It also allows us to group all transactions belonging to the same customer.
 
 ---
 
-# ➕ 5. Results After Adding New Columns
+# ➕ Results After Adding New Columns
 
 After creating the required custom columns and performing initial transformations, the dataset contains additional cleaned information.
 
@@ -201,9 +201,9 @@ These columns were later used for:
 * Product analysis
 * Quantity calculation
 
----
 
-# 🧼 6. Data Cleaning Using Power Query
+
+# 🧼 Data Cleaning Using Power Query
 
 Power Query was used to clean and standardize the dataset.
 
@@ -229,9 +229,7 @@ The following transformations were performed:
 
 The major benefit of Power Query is that the entire process is **repeatable and refreshable**.
 
----
-
-# 💰 7. Price Cleaning
+# 💰 Price Cleaning
 
 The Price column contained different formats.
 
@@ -264,9 +262,9 @@ This allows the dataset to be used for:
 * Maximum Price
 * Revenue Analysis
 
----
 
-# 📅 8. Purchase Date Cleaning
+
+# 📅 Purchase Date Cleaning
 
 The Purchase Date column contained multiple date formats.
 
@@ -303,9 +301,9 @@ This allows the dataset to be used for:
 * Date filtering
 * Sales trends
 
----
 
-# 🔢 9. Before Grouping
+
+# 🔢 Before Grouping
 
 Before grouping, the same customer and product could appear multiple times because a customer may have purchased the same product in multiple transactions.
 
@@ -322,9 +320,9 @@ Before grouping, the same customer and product could appear multiple times becau
 
 The objective was to combine these repeated Customer-Product combinations.
 
----
 
-# 📊 10. Grouping Customer + Product
+
+# 📊  Grouping Customer + Product
 
 The data was grouped using:
 
@@ -365,9 +363,9 @@ Mobile → 2 + 1 = 3
 
 This creates a unique Customer + Product combination while preserving the total quantity.
 
----
 
-# 🧮 11. Creating Product List
+
+# 🧮  Creating Product List
 
 After grouping the data by customer, a Product List was created using Power Query M.
 
@@ -399,9 +397,8 @@ the final Product List becomes:
 Rohan Singh | Camera, Mobile, Laptop
 ```
 
----
 
-# 🔢 12. Creating Quantity List
+# 🔢 Creating Quantity List
 
 A corresponding Quantity List was created using Power Query M.
 
@@ -438,9 +435,9 @@ Mobile → 3
 Laptop → 5
 ```
 
----
 
-# 👤 13. Final Customer-Level Summary
+
+# 👤 Final Customer-Level Summary
 
 The main requirement of the transformation was:
 
@@ -462,9 +459,9 @@ Rohan Singh | Camera, Mobile, Laptop | 4, 3, 5
 
 This provides a single row for each customer.
 
----
 
-# 🔍 14. Power Query Applied Steps
+
+# 🔍 Power Query Applied Steps
 
 The complete transformation process can be viewed in the Power Query Applied Steps panel.
 
@@ -502,9 +499,9 @@ Final Customer Summary
 
 Every transformation is stored as an Applied Step, making the workflow easy to audit and reproduce.
 
----
 
-# 📋 15. Final Clean Dataset
+
+# 📋 Final Clean Dataset
 
 After completing all Power Query transformations, the final dataset becomes clean, standardized, and ready for analysis.
 
@@ -530,9 +527,9 @@ Camera, Mobile, Laptop
 4, 3, 5
 ```
 
----
 
-# 🧠 16. Power Query M Functions Used
+
+# 🧠 Power Query M Functions Used
 
 ## `Text.Combine`
 
@@ -579,9 +576,9 @@ Table.Group(
 )
 ```
 
----
 
-# 🛠️ 17. Tools & Technologies
+
+# 🛠️ Tools & Technologies
 
 ### Tools Used
 
@@ -605,33 +602,7 @@ Table.Group(
 * Data Type Conversion
 * Duplicate Handling
 
----
-
-# 📁 18. Repository Structure
-
-```text
-Power-Query-Sales-Data/
-│
-├── Images/
-│   ├── 01_RAW_SALES_DATA.png
-│   ├── 02_ADDING_NEW_COLUMN.png
-│   ├── 03_AFTER_ADD_NEW_COLUMNS.png
-│   ├── 04_AFTER_CLEANING_DATA.png
-│   ├── 05_AFTER_GROUPING_DATA.png
-│   ├── 06_BEFORE_CLEANING_DATA.png
-│   ├── 07_BEFORE_GROUPING_DATA.png
-│   ├── 08_QUERY_PERFORMED.png
-│   ├── 09_FINAL_CLEAN_DATA.png
-│   └── 10_TASKS.png
-│
-├── Messy_Sales_Data_10000_PowerQuery.xlsx
-│
-└── README.md
-```
-
----
-
-# 📈 19. Business Applications
+# 📈 Business Applications
 
 The cleaned dataset can be used for several types of business analysis.
 
@@ -657,9 +628,9 @@ The cleaned dataset can be used for several types of business analysis.
 * Payment mode analysis
 * Product-wise sales
 
----
 
-# 🚀 20. Future Improvements
+
+# 🚀 Future Improvements
 
 This project can be extended into a complete Sales Analytics solution using:
 
@@ -674,9 +645,7 @@ This project can be extended into a complete Sales Analytics solution using:
 * Revenue Analysis
 * Sales Trend Analysis
 
----
-
-# ⭐ 21. Project Summary
+# ⭐ Project Summary
 
 ```text
 10,000+ Raw Sales Records
@@ -723,10 +692,6 @@ Rohan Singh
 Camera, Mobile, Laptop
 4, 3, 5
 ```
-
----
-
-
 
 ## ⭐ Key Takeaway
 
