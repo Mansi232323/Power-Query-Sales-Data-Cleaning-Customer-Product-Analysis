@@ -35,7 +35,7 @@ The major objectives of this project were:
 
 # 🎥 Project Demo
 
-[![Power Query Sales Data Cleaning & Transformation](Images/10k%2B%20SALES%20DATA.png)](https://drive.google.com/file/d/1vV3M4YbuQUr2UlXWBJvegk1v__PZhPLY/view?usp=sharing)
+[![Power Query Sales Data Cleaning & Transformation](Images/01_RAW_SALES_DATA.png)](https://drive.google.com/file/d/1vV3M4YbuQUr2UlXWBJvegk1v__PZhPLY/view?usp=sharing)
 
 > 🎬 Click the thumbnail above to watch the complete Power Query Sales Data Cleaning & Transformation demo.
 
